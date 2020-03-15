@@ -17,7 +17,7 @@
 
 ### Kubernetesサンプル
 
-![fig2](/home/youshinan/ドキュメント/Document/k8s/img/fig2.png)
+![fig2](./img/fig2.png)
 
 
 
