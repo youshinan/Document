@@ -1,6 +1,46 @@
+### kubernetesを構成するコンポーネント
 
-## ワークロード
-- ### Pod
+| コンポーネント名   | 説明                                                         |
+| ------------------ | ------------------------------------------------------------ |
+| apiserver          | kubernetesを操作するためのAPIを提供する                      |
+| controller-manager | コンテナの状態管理やノードの管理と言った各種管理作業を行う   |
+| proxy              | コンテナへのネットワークルーティングおよび負荷分散を行う     |
+| scheduler          | 各ノードに対しコンテナの割り当てなどを行う                   |
+| kubelet            | 各ノード上でのコンテナ作成/削除やボリュームの割り当てなどを行う |
+| kubectl            | API経由でKubenetesを操作するためのクライアントツール         |
+
+###  kubernetesの基本的な構成図
+
+![fig1-440x176](./img/fig1-440x176.png)
+
+
+
+### Kubernetesサンプル
+
+![fig2](/home/youshinan/ドキュメント/Document/k8s/img/fig2.png)
+
+
+
+### リソースオブジェクト
+
+| 名称       | 説明                                           |
+| ---------- | ---------------------------------------------- |
+| Pod        | 使用するコンテナや実行するプログラムを定義する |
+| Deployment | Podの管理方法を定義する                        |
+| Job        | 非定常的に処理を実行するジョブを定義する       |
+| CronJob    | 定期的に実行されるジョブを定義する             |
+| Service    | ネットワークサービスを定義する                 |
+| ConfigMap  | コンテナで使用される各種設定リソースを定義する |
+| Secret     | コンテナで使用される各種設定リソースを定義する |
+| Volume     | コンテナに割り当てるストレージを定義する       |
+| Namespace  | 管理のための名前空間を定義する                 |
+
+
+
+## Yaml
+
+### ワークロード
+- #### Pod
 ``` yaml
 apiVersion: v1
 kind: Pod
@@ -20,7 +60,7 @@ spec:
       type: Directory
 ```
 
-- ### ReplicaSet
+- #### ReplicaSet
 
 ``` yaml {.line-number .copy}
 apiVersion: apps/v1
@@ -46,7 +86,7 @@ spec:
 
 ```
 
-- ### Deployment
+- #### Deployment
 
 ```yaml
 apiVersion: apps/v1
@@ -79,7 +119,7 @@ spec:
         image: nginx:1.17.2-alpine
 ```
 
-- ### StatefulSet
+- #### StatefulSet
 
 ```yaml
 apiVersion: apps/v1
@@ -119,9 +159,9 @@ spec:
           storage: 1Gi
 ```
 
-## サービス
+### サービス
 
-- ### Service
+- #### Service
 
 ```yaml
 apiVersion: v1
@@ -139,7 +179,7 @@ spec:
     nodePort: 30000           # ノード上にマッピングするポート（type: NodePort 時のみ）
 ```
 
-- ### Ingress
+- #### Ingress
 
 ```yaml
 apiVersion: networking.k8s.io/v1beta1
@@ -159,9 +199,9 @@ spec:
           servicePort: 80
 ```
 
-## 設定
+### 設定
 
-- ### ConfigMap
+- #### ConfigMap
 
 ```yaml
 apiVersion: v1
@@ -174,7 +214,7 @@ data:
   type: "application"
 ```
 
-- ### Secret
+- #### Secret
 
 ```yaml
 apiVersion: v1
@@ -186,9 +226,9 @@ data:
   keyfile: WU9VUi1TRUNSRVQtS0VZ     # cat ./keyfile | base64
 ```
 
-## ストレージ
+### ストレージ
 
-- ### PersistentVolume
+- #### PersistentVolume
 
 ```yaml
 apiVersion: v1
@@ -211,7 +251,7 @@ spec:
 
 
 
-- ### PersistentVolumeClaim
+- #### PersistentVolumeClaim
 
 ```yaml
 apiVersion: v1
