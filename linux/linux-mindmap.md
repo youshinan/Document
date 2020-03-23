@@ -22,7 +22,7 @@
 
 # linux 内核学习路线
 
-![](.\img\189732-78a9f82e22e58bae.png)
+![](.\img\linux_kernel_map.svg)
 
 
 
